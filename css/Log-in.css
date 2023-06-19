@@ -35,6 +35,13 @@
     font-family: var(--second-font);
     color: var(--main-color);
     margin-bottom: 2px;
+
+    position: absolute;
+    left: 1rem;
+    z-index: 2;
+    top: 10px;
+
+    transition: ease all 400ms;
 }
 .content-remember{
     font-family: var(--second-font);
@@ -86,9 +93,7 @@
     font-weight: 700;
     width: 320px;
 }
-.style-button-enter:hover{
 
-}
 .style-button-google{
     display: flex;
     align-items: center;
@@ -137,4 +142,17 @@
 .content-input{
     display: flex;
     flex-direction: column;
+
+    position: relative;
+}
+
+.content-input > input{
+    position: relative;
+    z-index: 1;
+}
+
+.content-input > input:focus ~ .main-text,
+.content-input > input:valid ~ .main-text{
+    top: 0;
+    font-size: 1rem;
 }
