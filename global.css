@@ -18,5 +18,23 @@
     --second-back-color:#2776A387;
     --border-input-color: #7E7373;
 
+    --color-buton-hover: #5fa6d0;
+
     font-size: 62.5%;
+}
+
+.fade-in-left {
+    animation: fade-in-left 2s ease;
+}
+
+@keyframes fade-in-left {
+    0% {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
