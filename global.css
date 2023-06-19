@@ -9,6 +9,7 @@
 :root{
     --main-font:'Poppins', sans-serif;
     --second-font:'Nunito', sans-serif;
+    --color-white:  #fff;
     --main-color:#786E6E;
     --second-color:#3D3737;
     --third-color:#0E0D0D;
@@ -16,4 +17,6 @@
     --main-back-color:#F5F5F5;
     --second-back-color:#2776A387;
     --border-input-color: #7E7373;
+
+    font-size: 62.5%;
 }
