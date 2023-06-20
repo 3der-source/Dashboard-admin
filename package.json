@@ -1,5 +1,23 @@
 {
   "dependencies": {
     "express": "^4.18.2"
-  }
+  },
+  "name": "dashboard-admin",
+  "description": "Projeto para estudo: HTML, CSS, JAVASCRIPT",
+  "version": "1.0.0",
+  "main": "rotas.js",
+  "scripts": {
+    "start": "nodemon rotas.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/3der-source/Dashboard-admin.git"
+  },
+  "author": "Eder, Rafael, Thiago",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/3der-source/Dashboard-admin/issues"
+  },
+  "homepage": "https://github.com/3der-source/Dashboard-admin#readme"
 }
