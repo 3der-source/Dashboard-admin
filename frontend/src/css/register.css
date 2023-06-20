@@ -28,7 +28,7 @@
 
 .content-register > h1{
     font-family: var(--main-font);
-
+    margin-bottom: 2.6rem;    
     color: var(--second-back-color);
 }
 
@@ -128,7 +128,7 @@
 }
 
 .content-img-register img{
-    width: 270px;
+    width: 30rem;
 }
 
 @media screen and (max-width: 375px){
