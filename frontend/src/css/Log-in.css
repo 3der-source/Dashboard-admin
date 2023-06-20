@@ -24,6 +24,7 @@
     align-items: center;
     background: -webkit-linear-gradient(top, var(--main-back-color) 50%, var(--second-back-color) 50%);;
     border-radius: 10px;
+
 }
 .content-login{
     display: flex;
@@ -88,10 +89,11 @@
     background: var(--color-buton);
     color: var(--main-back-color);
     height: 40px;
-    margin-bottom: 1em;
     font-family: var(--second-font);
     font-weight: 700;
     width: 320px;
+    cursor: pointer;
+    transition: font-size 500ms;
 }
 
 .style-button-google{
@@ -104,6 +106,16 @@
     width: 320px;
     font-family: var(--second-font);
     font-weight: 700;
+    cursor: pointer;
+    transition: font-size 500ms;
+}
+
+.style-button-enter:hover{
+    font-size: 18px;
+}
+.style-button-google:hover{
+    background-color: var(--color-white);
+    font-size: 16px;
 }
 .content-Create{
     display: flex;
@@ -111,7 +123,8 @@
     justify-content: center;
     font-family: var(--second-font);
     margin-top: 1em;
-    color:var(--main-color);
+    gap: 5px;
+    color: var(--main-color);
 }
 .content-new-acount{
     text-decoration: none;
@@ -142,7 +155,6 @@
 .content-input{
     display: flex;
     flex-direction: column;
-
     position: relative;
 }
 
@@ -155,4 +167,63 @@
 .content-input > input:valid ~ .main-text{
     top: 0;
     font-size: 1rem;
+}
+.content-img > img {
+    width: 270px;
+}
+
+@media screen and (max-width: 375px){
+    .content-border{
+        box-shadow: none;
+    }
+    .container-logIn{
+        display: grid;
+    }
+    .content-email{
+        width: 290px;
+    }
+    .content-password{
+        width: 290px;
+    }
+    .style-button-enter{
+        margin-bottom: revert;
+    }
+    .style-button-enter ,.style-button-google{
+        width: 290px;
+    }
+    .content-buttons{
+        display: contents;
+        align-items: center;
+    }
+    .content-check{
+        display: flex;
+        gap: 3px;
+    }
+    .content-forgot-password{
+        font-size: 13px;
+    }
+    .content-Create{
+        margin-top: auto;
+    }
+    .content-check{
+        margin-top: revert;
+    }
+    .content-Create{
+        font-size: 15px;
+    }
+} 
+
+@media screen and (max-width: 452px){
+    .content-border{
+        box-shadow: none;
+    }
+} 
+
+@media screen and (max-width: 768px){
+    .content-img > img{
+        display: contents;
+    }
+    .content-img{
+        display: contents;
+    }
 }
