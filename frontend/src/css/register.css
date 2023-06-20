@@ -1,0 +1,128 @@
+.container-register{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    font-size: 1.6rem;
+}
+.content{
+    display: flex;
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
+    width: 70%;
+    height: 70%;
+    border-radius: 10px;
+}
+.content-register, .content-img-register{
+    flex: 1 50%;
+    white-space: nowrap;
+    box-sizing: border-box;
+}
+.content-register{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.content-register > h1{
+    font-family: var(--main-font);
+
+    color: var(--second-back-color);
+}
+
+.content-input{
+    display: flex;
+    flex-direction: column;
+    
+    font-family: var(--second-font);
+    font-size: 15px;
+    line-height: 18px;
+
+    position: relative;
+
+    color: var(--main-color);
+}
+
+.content-register > .content-input > input{
+    width: 300px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid var(--border-input-color);
+    outline: none;
+
+    position: relative;
+    z-index: 1;
+}
+
+.content-register > .content-input > label{
+    position: absolute;
+    left: 1rem;
+    z-index: 2;
+    top: 10px;
+
+    transition: ease all 400ms;
+}
+
+.content-register > .content-input > input:focus ~ label,
+.content-register > .content-input > input:valid ~ label{
+    top: 0;
+    font-size: 1rem;
+}
+
+.content-buttons{
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.button-register,
+.register-google{
+    width: 300px;
+    height: 30px;
+
+    font-weight: 700;
+    
+    border: 1px solid var(--border-input-color);
+    border-radius: 6px;
+}
+
+.button-register{
+    background-color: var(--color-buton);
+    color: var(--color-white);
+
+    line-height: 16px;
+}
+
+.register-google{
+    background-color: var(--color-white);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.content-register > p{
+    color: var(--main-color);
+    font-weight: 700;
+}
+
+.content-register > p > a{
+    text-decoration: none;
+    color: var(--color-buton);
+}
+
+.content-img-register{
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    height: 100%;
+    background: -webkit-linear-gradient(top, var(--main-back-color) 50%, var(--second-back-color) 50%);
+
+}
+
+.content-img-register img{
+    width: 270px;
+}
