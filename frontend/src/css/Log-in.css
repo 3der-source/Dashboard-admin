@@ -125,10 +125,12 @@
     margin-top: 1em;
     gap: 5px;
     color: var(--main-color);
+    font-weight: 700;
 }
 .content-new-acount{
     text-decoration: none;
     color: var(--color-buton);
+    font-weight: 700;
     font-family: var(--second-font);
 }
 .content-forgot-password{
@@ -149,7 +151,7 @@
 }
 
 .content-img img{
-    width: 40rem;
+    width: 30rem;
 }
 
 .content-input{
