@@ -8,17 +8,17 @@
 </head>
 <body>
     <div class="container-logIn fade-in-left">
-        <div class="content-border">
+        <form method="post" class="content-border">
             <div class="content-login">
                 <h1 class="main-title">Bem-vindo</h1>
                 <div class="content-input">
-                    <input type="email"  class="content-email" required>
-                    <label class="main-text">Email</label>
+                    <input type="email"  class="content-email" id="email" required>
+                    <label class="main-text" for="email">Email</label>
                 </div>
                 <div class="content-input">
                     <input type="password" required
-                    class="content-password">
-                    <label class="main-text">Password</label>
+                    class="content-password" id="password">
+                    <label class="main-text" for="password">Password</label>
                 </div>
                 <div class="content-check">
                         <input type="checkbox" class="content-checkbox"><span class="content-remember">Lembrar-me por 30 dias</span>
@@ -33,7 +33,7 @@
             <div class="content-img">
                 <img src="/assets/Group.svg" alt="foto da empresa" >
             </div>
-        </div>
+        </form>
 </div>
 </body>
 </html>
