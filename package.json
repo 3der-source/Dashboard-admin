@@ -7,7 +7,7 @@
   "version": "1.0.0",
   "main": "rotas.js",
   "scripts": {
-    "start": "nodemon rotas.js",
+    "start": "nodemon backend/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
