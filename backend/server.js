@@ -19,9 +19,13 @@ const dbPass = process.env.DB_PASS;
 const dataBaseUrl = `mongodb+srv://${dbUser}:${dbPass}@cluster0.st1r4mu.mongodb.net/?retryWrites=true&w=majority`;
 
 app.post('/auth/register', (req, res) => {
-    let {username, email, password} = req.body;
+    const {username, email, password} = req.body;
+    if(!username){
+        console.log('Coloque um usuário!');
+    }
     console.log(req.body)
     res.send({username, email, password})
 })
-
-app.listen(3000, () => {console.log('server rodando')})
+mongoose.connect(dataBaseUrl).then(()=>{
+    app.listen(3000, () => {console.log('server rodando')})
+}).catch((err) => res.status(500).send('Deu ruim!'))

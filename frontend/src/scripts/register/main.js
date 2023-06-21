@@ -8,8 +8,12 @@ function verifyCamp(evt){
         messageError.innerHTML = 
         `${id.toUpperCase()} deve conter no mínimo 7 caracteres`;
         camp.classList.add('error');
+    } else {
+        messageError.innerHTML = ""
     }
+
 }
+
 
 function focusIn(evt){
     evt.target.classList.remove('error');
@@ -51,6 +55,7 @@ function registerUser(evt) {
 const usernameCamp = document.getElementById('username');
 const emailCamp = document.getElementById('email');
 const passwordCamp = document.getElementById('password');
+
 
 const inputs = Array.from(document.querySelectorAll('input'));
 
