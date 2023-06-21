@@ -1,49 +1,33 @@
 function verifyCamp(evt){
     const camp = evt.target;
     const id = camp.getAttribute('id');
+    const messageError = document.querySelector(`#${id} ~ p`);
 
     if(camp.validity.tooShort){
-        const messageError = document.querySelector(`#${id} ~ p`);
         messageError.classList.add('errorMessage')
         messageError.innerHTML = 
         `${id.toUpperCase()} deve conter no mínimo 7 caracteres`;
-        
         camp.classList.add('error');
     }
 }
 
-const usernameCamp = document.getElementById('username');
-const emailCamp = document.getElementById('email');
-const passwordCamp = document.getElementById('password');
+function focusIn(evt){
+    evt.target.classList.remove('error');
+}
 
-const inputs = [...document.querySelectorAll('input')];
+function inputListener(evt){
+    const transformValue = evt.target.value !== "" ? "-10px" : "0";
+    evt.target.nextElementSibling.style.transform = `translateY(${transformValue})`;
+}
 
-inputs.map((e) => {
-    e.addEventListener('input', function (){
-        if(this.value !== ""){
-            this.nextElementSibling.style.transform = "translateY(-10px)";
-        }else {
-            this.nextElementSibling.style.transform = "translateY(0)";
-        }
-    })
-})
+function registerUser(evt) {
+    evt.preventDefault();
 
-usernameCamp.addEventListener('focusout', verifyCamp);
-usernameCamp.addEventListener('focusin', () => {
-    usernameCamp.classList.remove('error');
-})
-
-
-
-document.querySelector('.button-register').addEventListener('click', (e) =>{
-    e.preventDefault();
     const dados = {
         username: usernameCamp.value,
         email: emailCamp.value,
         password: passwordCamp.value,
     }
-
-    console.log(dados)
 
     const cabecalho = {
         method: 'POST',
@@ -54,6 +38,27 @@ document.querySelector('.button-register').addEventListener('click', (e) =>{
     }
 
     fetch('/auth/register', cabecalho)
-    .then(res => res.json())
-    .then(res => console.log(res)); 
+    .then(res => {
+        if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        return res.json();
+    })
+    .then(res => console.log(res))
+    .catch(e => console.log('There was a problem with your fetch operation: ' + e.message));
+}
+
+const usernameCamp = document.getElementById('username');
+const emailCamp = document.getElementById('email');
+const passwordCamp = document.getElementById('password');
+
+const inputs = Array.from(document.querySelectorAll('input'));
+
+inputs.forEach(input => {
+    input.addEventListener('input', inputListener);
 })
+
+usernameCamp.addEventListener('focusout', verifyCamp);
+usernameCamp.addEventListener('focusin', focusIn);
+
+document.querySelector('.button-register').addEventListener('click', registerUser);
