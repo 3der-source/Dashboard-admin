@@ -1,3 +1,4 @@
+
 function verifyCamp(evt){
     const camp = evt.target;
     const id = camp.getAttribute('id');
@@ -8,7 +9,14 @@ function verifyCamp(evt){
         messageError.innerHTML = 
         `${id.toUpperCase()} deve conter no mínimo ${camp.getAttribute('minlength')} caracteres`;
         camp.classList.add('error');
-    }
+        document.querySelector(`#${id} ~ label`).classList.add('errorMessage');        
+    } 
+    camp.addEventListener('focus', ()=>{
+            messageError.innerHTML = ""
+            document.querySelector(`#${id} ~ label`).classList.remove('errorMessage');
+    
+    })
+
 }
 
 
@@ -43,7 +51,7 @@ function registerUser(evt) {
         body: JSON.stringify(dados),
     }
 
-    fetch('/auth/register', cabecalho)
+    fetch('/register/auth', cabecalho)
     .then(res => {
         if (!res.ok) {
             throw new Error(`HTTP error! status: ${res.status}`);
@@ -51,7 +59,7 @@ function registerUser(evt) {
         return res.json();
     })
     .then(res => console.log(res))
-    .catch(e => console.log('There was a problem with your fetch operation: ' + e.message));
+    .catch(res=> console.log('There was a problem with your fetch operation: ' + res.message));
 }
 
 const usernameCamp = document.getElementById('username');
