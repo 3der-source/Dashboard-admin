@@ -55,9 +55,7 @@
     outline: none;
 }
 
-.content-register > .content-input > input:focus ~ label{
-    transform: translateY(-10px);
-}
+
 
 .container-register .content-input > label{
     position: absolute;
