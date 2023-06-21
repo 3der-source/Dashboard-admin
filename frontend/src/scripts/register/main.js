@@ -6,12 +6,9 @@ function verifyCamp(evt){
     if(camp.validity.tooShort){
         messageError.classList.add('errorMessage')
         messageError.innerHTML = 
-        `${id.toUpperCase()} deve conter no mínimo 7 caracteres`;
+        `${id.toUpperCase()} deve conter no mínimo ${camp.getAttribute('minlength')} caracteres`;
         camp.classList.add('error');
-    } else {
-        messageError.innerHTML = ""
     }
-
 }
 
 
@@ -21,8 +18,13 @@ function focusIn(evt){
 
 function inputListener(evt){
     const transformValue = evt.target.value !== "" ? "-10px" : "0";
+    const fontSizeValue = evt.target.value !== "" ? "10px" : "15px";
+
     evt.target.nextElementSibling.style.transform = `translateY(${transformValue})`;
+    evt.target.nextElementSibling.style.fontSize = fontSizeValue;
 }
+
+
 
 function registerUser(evt) {
     evt.preventDefault();

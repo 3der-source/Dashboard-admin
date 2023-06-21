@@ -1,10 +1,13 @@
 require('dotenv').config();
+
 const express = require('express');
 const app = express();
 const path = require('path');
 const rotas = require('./rotas');
+
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt');
+const { httpRequests } = require('./request');
 
 const mainPath = __dirname.split('\\backend')[0];
 
@@ -18,14 +21,8 @@ const dbUser = process.env.DB_USER;
 const dbPass = process.env.DB_PASS;
 const dataBaseUrl = `mongodb+srv://${dbUser}:${dbPass}@cluster0.st1r4mu.mongodb.net/?retryWrites=true&w=majority`;
 
-app.post('/auth/register', (req, res) => {
-    const {username, email, password} = req.body;
-    if(!username){
-        console.log('Coloque um usuário!');
-    }
-    console.log(req.body)
-    res.send({username, email, password})
-})
-mongoose.connect(dataBaseUrl).then(()=>{
-    app.listen(3000, () => {console.log('server rodando')})
-}).catch((err) => res.status(500).send('Deu ruim!'))
+
+app.listen(3000, () => {console.log('server rodando')})
+
+httpRequests(app);
+
