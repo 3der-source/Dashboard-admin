@@ -12,16 +12,19 @@
             <div class="content-register">
                 <h1>Registrar-se</h1>
                 <div class="content-input">
-                    <input type="text" id="username" required>
+                    <input minlength="4" maxlength="15" type="text" id="username" required>
                     <label class="text" for="username">Usuário</label>
+                    <p><p>
                 </div>
                 <div class="content-input">
-                    <input type="email" id="email" required>
+                    <input class="error" type="email" id="email" required>
                     <label for="email">Email</label>
+                    <p><p>
                 </div>
                 <div class="content-input">
                     <input type="password" id="password" required>
                     <label for="password">Senha</label>
+                    <p></p>
                 </div>
                 <div class="content-buttons">
                     <button class="button-register">Criar conta</button>   
@@ -37,6 +40,6 @@
             </div>
         </form>
     </main>
-    <script src="scripts/register/main.js"></script>
+    <script src="scripts/register/main.js" type="module"></script>
 </body>
 </html>
