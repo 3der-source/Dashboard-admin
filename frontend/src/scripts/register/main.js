@@ -88,13 +88,7 @@ document.querySelector('.button-register').addEventListener('click', registerUse
 
 
 showPasswordBtn.addEventListener('click', () => {
-    if(passwordCamp.type === 'password'){
-        passwordCamp.type = 'text';
-        showPasswordBtn.textContent = 'Ocultar Senha'
-        showPasswordBtn.classList.add('showPasswordBtn')
-    } else {
-        passwordCamp.type = 'password';
-        showPasswordBtn.textContent = 'Mostrar Senha'
-        showPasswordBtn.classList.remove('showPasswordBtn')
-    }
+    const getTypeVerify = passwordCamp.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordCamp.setAttribute('type', getTypeVerify)
+    showPasswordBtn.classList.toggle('showPasswordBtn')
 })
