@@ -3,12 +3,16 @@ export default function verifyEmail(email){
     
     const verifyArroba = email.split('@');
     if(verifyArroba.length === 1)return "coloca o @ ai filho da puta!"; 
-    for(let i = 0; verifyArroba.length - 1; ++i)if(verifyArroba[i] == '' && verifyArroba[i + 1] == '')return 'mais de um @';
+    for(let i of verifyArroba)if(i === '')return 'mais de um @';
 
     const verifyDomain = email.split('@')[1].split('.')[0];
-    if(verifyDomain.length == "") return 'Domínio de email inválido';
+    if(verifyDomain.length === 0) return 'Domínio de email inválido';
+
     const regexSanitize = new RegExp(/[.!@#$%^&*()_+-=~{}<>]/);
     if(regexSanitize.test(verifyDomain))return "Domínio de email Inválido";
 
-    return true;
+    const verfyDot = email.split('.')[1];
+    if(verfyDot == '')return "endereço inválido";
+
+    return 'true';
 }

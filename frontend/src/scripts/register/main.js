@@ -11,7 +11,9 @@ function verifyCamp(evt){
 
     if(id === 'email'){
         messageError.innerHTML = verifyEmail(camp.value);
+        console.log(verifyEmail(camp.value))
         if(messageError.innerHTML == 'true'){
+            console.log('true');
             messageError.innerHTML = "" 
         }else{
             messageError.classList.add('errorMessage');
