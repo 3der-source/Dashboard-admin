@@ -2,6 +2,22 @@ import verifyPassword from "./verifyPassword.js";
 import verifyEmail from "./verifyEmail.js";
 
 function verifyCamp(evt){
+    function removeError(){
+        camp.addEventListener('focusin', (evt)=>{
+            focusIn(evt)
+            messageError.innerHTML = ""
+            campLabel.classList.remove('errorMessage');
+            if(btnShowPass)btnShowPass.classList.remove('errorMessage');
+            camp.removeEventListener('focusin', {});
+    })}
+    
+    function addError(msg){
+        camp.classList.add('error');
+        campLabel.classList.add('errorMessage');
+        messageError.classList.add('errorMessage')
+        removeError();
+    }
+
     const camp = evt.target;
     const id = camp.getAttribute('id');
     const messageError = document.querySelector(`#${id} ~ p`);
@@ -9,33 +25,22 @@ function verifyCamp(evt){
 
     const btnShowPass = document.querySelector(`#${id} ~ button > span`) || undefined;
 
-    if(id === 'email'){
-        messageError.innerHTML = verifyEmail(camp.value);
-        console.log(verifyEmail(camp.value))
-        if(messageError.innerHTML == 'true'){
-            console.log('true');
-            messageError.innerHTML = "" 
-        }else{
-            messageError.classList.add('errorMessage');
-        }
-
+    
+    if(camp.validity.tooShort){
+        messageError.innerHTML = `${id.toUpperCase()} deve conter no mínimo ${camp.getAttribute('minlength')} caracteres`;        
+        if(btnShowPass)btnShowPass.classList.add('errorMessage');
+        addError(messageError);
+        return;
     }
 
-    if(camp.validity.tooShort){
-        messageError.classList.add('errorMessage')
-        messageError.innerHTML = 
-        `${id.toUpperCase()} deve conter no mínimo ${camp.getAttribute('minlength')} caracteres`;
-        camp.classList.add('error');
-        campLabel.classList.add('errorMessage');
-        
-        if(btnShowPass)btnShowPass.classList.add('errorMessage');
-    } 
-    camp.addEventListener('focusin', (evt)=>{
-            focusIn(evt)
-            messageError.innerHTML = ""
-            campLabel.classList.remove('errorMessage');
-            if(btnShowPass)btnShowPass.classList.remove('errorMessage');
-    })
+    if(id === 'email'){
+        messageError.innerHTML = verifyEmail(camp.value);
+        if(messageError.innerHTML == 'true'){
+            messageError.innerHTML = "" 
+        }else{
+            addError(messageError);
+        }
+    }
 
 }
 
