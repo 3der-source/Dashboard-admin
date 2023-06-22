@@ -20,12 +20,13 @@ function verifyCamp(evt){
             campLabel.classList.remove('errorMessage');
             if(btnShowPass)btnShowPass.classList.remove('errorMessage');
             camp.removeEventListener('focusin', {});
-    })}
+        })}
 
-    function addError(msg){
+    function addError(){
         camp.classList.add('error');
         campLabel.classList.add('errorMessage');
         messageError.classList.add('errorMessage')
+        if(btnShowPass)btnShowPass.classList.add('errorMessage');
         removeError();
     }
 
@@ -34,7 +35,7 @@ function verifyCamp(evt){
     if(camp.validity.tooShort){
         messageError.innerHTML = `${id.toUpperCase()} deve conter no mínimo ${camp.getAttribute('minlength')} caracteres`;        
         if(btnShowPass)btnShowPass.classList.add('errorMessage');
-        addError(messageError);
+        addError();
         return;
     }
 
@@ -43,18 +44,19 @@ function verifyCamp(evt){
         if(messageError.innerHTML == 'true'){
             messageError.innerHTML = "" 
         }else{
-            addError(messageError);
+            addError();
         }
     }
     
-    if (id === 'password') {
+    if(id === 'senha') {
         messageError.innerHTML = verifyPassword(camp.value);
         if (messageError.innerHTML == 'true') {
             messageError.innerHTML = ""
         } else {
-            addError(messageError);
+            addError();
         }
     }
+    camp.removeEventListener('focusout', {})
 }
 
 export default function inputListener(evt){

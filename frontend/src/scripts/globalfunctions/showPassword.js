@@ -1,7 +1,9 @@
 export default function showPassword(){
-    const getTypeVerify = this.getAttribute('type') === 'password' ? 'text' : 'password';
-    const imgButton = passwordCamp.getAttribute('type') === 'password' ? 'visibility' : 'visibility_off';
+    const input = this.previousElementSibling.previousElementSibling;
+    input.focus();
+    const getTypeVerify = input.getAttribute('type') === 'password' ? 'text' : 'password';
+    const imgButton = input.getAttribute('type') === 'password' ? 'visibility' : 'visibility_off';
     
     this.firstElementChild.innerHTML = imgButton; 
-    this.setAttribute('type', getTypeVerify)
+    input.setAttribute('type', getTypeVerify);
 }
