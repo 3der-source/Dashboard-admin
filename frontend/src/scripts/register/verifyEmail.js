@@ -2,8 +2,10 @@ export default function verifyEmail(email){
     if(email.match(/\s/))return 'tira esse espaço acefalo'
     
     const verifyArroba = email.split('@');
-    if(verifyArroba.length === 1)return "missing "; 
-    for(let i of verifyArroba)if(i === '')return 'coloque o @';
+    
+    if(verifyArroba.length === 1)return "coloque o @"; 
+
+    for(let i of verifyArroba)if(i === '')return 'mais de um @';
 
     const verifyDomain = email.split('@')[1].split('.')[0];
     if(verifyDomain.length === 0) return 'Domínio de email inválido';

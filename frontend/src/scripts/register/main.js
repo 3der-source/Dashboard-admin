@@ -10,7 +10,7 @@ function verifyCamp(evt){
             if(btnShowPass)btnShowPass.classList.remove('errorMessage');
             camp.removeEventListener('focusin', {});
     })}
-    
+
     function addError(msg){
         camp.classList.add('error');
         campLabel.classList.add('errorMessage');
@@ -41,7 +41,7 @@ function verifyCamp(evt){
             addError(messageError);
         }
     }
-
+    camp.removeEventListener('focusout', {});
 }
 
 
@@ -56,7 +56,7 @@ function inputListener(evt){
     evt.target.nextElementSibling.style.top = `${transformValue}`;
     evt.target.nextElementSibling.style.fontSize = fontSizeValue;
 
-    evt.target.addEventListener('focusout', verifyCamp)
+    evt.target.addEventListener('focusout', verifyCamp);
 }
 
 function showPassword(){
