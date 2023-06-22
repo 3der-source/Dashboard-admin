@@ -1,4 +1,5 @@
 export default function verifyPassword(password){
+    if(password == '')return 'SENHA: por favor preencha esse campo'
     const verifyTolowerCase =  new RegExp(/[a-z]/);
     const verifyToUperCase = new RegExp(/[A-Z]/);
     const verifyPasswordNumber = new RegExp(/[0-9]/);

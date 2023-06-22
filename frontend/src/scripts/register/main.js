@@ -5,7 +5,6 @@ function registerUser(evt) {
     evt.preventDefault();
 
     if(!controler.username || !controler.email || !controler.senha){
-        
         return;
     }
 
