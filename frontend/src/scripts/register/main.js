@@ -51,20 +51,28 @@ function registerUser(evt) {
         body: JSON.stringify(dados),
     }
 
-    fetch('/register/auth', cabecalho)
-    .then(res => {
-        if (!res.ok) {
-            throw new Error(`HTTP error! status: ${res.status}`);
-        }
-        return res.json();
-    })
-    .then(res => console.log(res))
-    .catch(res=> console.log('There was a problem with your fetch operation: ' + res.message));
+        fetch('/register/auth', cabecalho)
+        .then((res) => {
+            if (!res || !res.ok) {
+                throw new Error(`HTTP error! status: ${res.status}`);
+            } else {
+                return res.json();
+            }
+        })
+        .then((data) => {
+            if (data.success) {
+                    window.location.href = data.redirectUrl
+            } else {
+                console.log(data.error)
+            }
+        })
+        .catch(res=> console.log('There was a problem with your fetch operation: ' + res.message));
 }
 
 const usernameCamp = document.getElementById('username');
 const emailCamp = document.getElementById('email');
 const passwordCamp = document.getElementById('password');
+const showPasswordBtn = document.getElementById('showPasswordBtn');
 
 
 const inputs = Array.from(document.querySelectorAll('input'));
@@ -77,3 +85,16 @@ usernameCamp.addEventListener('focusout', verifyCamp);
 usernameCamp.addEventListener('focusin', focusIn);
 
 document.querySelector('.button-register').addEventListener('click', registerUser);
+
+
+showPasswordBtn.addEventListener('click', () => {
+    if(passwordCamp.type === 'password'){
+        passwordCamp.type = 'text';
+        showPasswordBtn.textContent = 'Ocultar Senha'
+        showPasswordBtn.classList.add('showPasswordBtn')
+    } else {
+        passwordCamp.type = 'password';
+        showPasswordBtn.textContent = 'Mostrar Senha'
+        showPasswordBtn.classList.remove('showPasswordBtn')
+    }
+})
