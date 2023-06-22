@@ -9,4 +9,6 @@ export default function verifyEmail(email){
     if(verifyDomain.length === 0) return 'Domínio de email inválido';
     const regexSanitize = new RegExp(/[.!@#$%^&*()_+-=~{}<>]/);
     if(regexSanitize.test(verifyDomain))return "Domínio de email Inválido";
+    
+    return true;
 }

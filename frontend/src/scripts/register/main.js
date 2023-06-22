@@ -9,6 +9,10 @@ function verifyCamp(evt){
 
     const btnShowPass = document.querySelector(`#${id} ~ button > span`) || undefined;
 
+    if(id === 'email'){
+        messageError.innerHTML = verifyEmail(camp.value); 
+    }
+
     if(camp.validity.tooShort){
         messageError.classList.add('errorMessage')
         messageError.innerHTML = 
