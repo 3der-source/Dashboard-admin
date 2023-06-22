@@ -2,6 +2,13 @@ import verifyPassword from "./verifyPassword.js";
 import verifyEmail from "./verifyEmail.js";
 
 function verifyCamp(evt){
+    const camp = evt.target;
+    const id = camp.getAttribute('id');
+    const messageError = document.querySelector(`#${id} ~ p`);
+    const campLabel = document.querySelector(`#${id} ~ label`);
+
+    const btnShowPass = document.querySelector(`#${id} ~ button > span`) || undefined;
+
     function removeError(){
         camp.addEventListener('focusin', (evt)=>{
             focusIn(evt)
@@ -18,12 +25,6 @@ function verifyCamp(evt){
         removeError();
     }
 
-    const camp = evt.target;
-    const id = camp.getAttribute('id');
-    const messageError = document.querySelector(`#${id} ~ p`);
-    const campLabel = document.querySelector(`#${id} ~ label`);
-
-    const btnShowPass = document.querySelector(`#${id} ~ button > span`) || undefined;
 
     
     if(camp.validity.tooShort){
@@ -38,6 +39,15 @@ function verifyCamp(evt){
         if(messageError.innerHTML == 'true'){
             messageError.innerHTML = "" 
         }else{
+            addError(messageError);
+        }
+    }
+
+    if (id === 'password') {
+        messageError.innerHTML = verifyPassword(camp.value);
+        if (messageError.innerHTML == 'true') {
+            messageError.innerHTML = ""
+        } else {
             addError(messageError);
         }
     }
