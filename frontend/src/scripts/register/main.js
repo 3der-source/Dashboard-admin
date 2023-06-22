@@ -10,7 +10,13 @@ function verifyCamp(evt){
     const btnShowPass = document.querySelector(`#${id} ~ button > span`) || undefined;
 
     if(id === 'email'){
-        messageError.innerHTML = verifyEmail(camp.value); 
+        messageError.innerHTML = verifyEmail(camp.value);
+        if(messageError.innerHTML == 'true'){
+            messageError.innerHTML = "" 
+        }else{
+            messageError.classList.add('errorMessage');
+        }
+
     }
 
     if(camp.validity.tooShort){
