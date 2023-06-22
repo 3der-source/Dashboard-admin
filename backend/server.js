@@ -30,6 +30,6 @@ mongoose.connect(dataBaseUrl).then(()=>{
     app.listen(3000)
     console.log('servido rodando')
 
-}).catch((err) => res.status(500).send('MEU CU PELUDO'))
+}).catch((err) => err.status(500).send('MEU CU PELUDO'))
 
 

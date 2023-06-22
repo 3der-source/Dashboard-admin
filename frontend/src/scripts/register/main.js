@@ -32,7 +32,11 @@ function inputListener(evt){
     evt.target.nextElementSibling.style.fontSize = fontSizeValue;
 }
 
-
+function showPassword(){
+    const getTypeVerify = passwordCamp.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordCamp.setAttribute('type', getTypeVerify)
+    showPasswordBtn.classList.toggle('showPasswordBtn')
+}
 
 function registerUser(evt) {
     evt.preventDefault();
@@ -87,8 +91,4 @@ usernameCamp.addEventListener('focusin', focusIn);
 document.querySelector('.button-register').addEventListener('click', registerUser);
 
 
-showPasswordBtn.addEventListener('click', () => {
-    const getTypeVerify = passwordCamp.getAttribute('type') === 'password' ? 'text' : 'password';
-    passwordCamp.setAttribute('type', getTypeVerify)
-    showPasswordBtn.classList.toggle('showPasswordBtn')
-})
+showPasswordBtn.addEventListener('click', showPassword)
