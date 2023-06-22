@@ -2,7 +2,7 @@ export default function verifyPassword(password){
     const verifyTolowerCase =  new RegExp(/[a-z]/);
     const verifyToUperCase = new RegExp(/[A-Z]/);
     const verifyPasswordNumber = new RegExp(/[0-9]/);
-    const verifySpecialCharacters = new RegExp(/[!@#$]/)
+    const verifySpecialCharacters = new RegExp(/[!@#$.,;:&*%-_+=()]/)
 
     if(!verifyTolowerCase.test(password) || !verifyToUperCase.test(password)){
         return 'A senha tem que ter letras maiúsculas e minúsculas!'

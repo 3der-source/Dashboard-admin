@@ -39,10 +39,11 @@ function registerUser(evt) {
 const inputs = Array.from(document.querySelectorAll('input'));
 const showPasswordBtn = document.getElementById('showPasswordBtn');
 
+showPasswordBtn.addEventListener('click', showPassword)
+
 inputs.forEach(input => {
     input.addEventListener('input', inputListener);
 })
 
-showPasswordBtn.addEventListener('click', showPassword)
 
 document.querySelector('.button-register').addEventListener('click', registerUser);
