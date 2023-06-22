@@ -12,4 +12,8 @@ rotas.get('/login', (req, res) => {
     res.sendFile(path.join(mainPath + dirPages + '/Log-in.html'));
 })
 
+rotas.get('/esqueceuasenha', (req, res) => {
+    res.sendFile(path.join(mainPath + dirPages + '/Esqueceu-sua-Senha.html'));
+})
+
 module.exports = rotas;
