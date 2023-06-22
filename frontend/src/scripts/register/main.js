@@ -1,5 +1,6 @@
 import inputListener from '../globalfunctions/inputListener.js'
 import showPassword from '../globalfunctions/showPassword.js';
+import toggleError from '../globalfunctions/exports/toggleError.js';
 
 function registerUser(evt) {
     evt.preventDefault();
@@ -38,7 +39,10 @@ function registerUser(evt) {
             if (data.success) {
                     window.location.href = data.redirectUrl
             } else {
-                console.log(data.error)
+                const messageError = document.querySelector(`#${inputs[1].getAttribute('id')} ~ p`);
+                messageError.innerHTML = data.error;
+                messageError.classList.add('errorMessage');
+                toggleError(inputs[1], messageError.previousElementSibling, messageError)
             }
         })
         .catch(res=> console.log('There was a problem with your fetch operation: ' + res.message));
@@ -71,19 +75,7 @@ document.querySelector('.button-register').addEventListener('click', function(ev
 
             const btnShowPass = document.querySelector(`#${input.getAttribute('id')} ~ button > span`) || undefined;
             
-            label.classList.add('errorMessage');
-            messageError.innerHTML = 
-            `${input.getAttribute('id').toUpperCase()}: por favor preencha esse campo`
-            messageError.classList.add('errorMessage');
-            if(btnShowPass)btnShowPass.classList.add('errorMessage');
-
-            input.addEventListener('focusin', function(){
-                input.classList.remove('error');
-                messageError.innerHTML = ""
-                label.classList.remove('errorMessage');
-                if(btnShowPass)btnShowPass.classList.remove('errorMessage');
-                input.removeEventListener('focusin', {});
-            })
+            toggleError(input, label, messageError, btnShowPass);
             return;
         }
     })
