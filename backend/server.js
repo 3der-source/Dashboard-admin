@@ -5,6 +5,7 @@ const app = express();
 const path = require('path');
 const rotas = require('./rotas');
 const request = require('./request')
+const cors = require('cors');
 
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt');
@@ -14,6 +15,9 @@ const mainPath = __dirname.split('\\backend')[0];
 app.use(express.static(path.join(mainPath + '/frontend/src')));
 app.use(express.json());
 
+app.use(cors({
+    origin: '*'
+}));
 app.use(request);
 app.use(rotas);
 
