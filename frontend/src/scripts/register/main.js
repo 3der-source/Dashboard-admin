@@ -1,3 +1,5 @@
+import verifyPassword from "./verifyPassword";
+import verifyEmail from "./verifyEmail";
 
 function verifyCamp(evt){
     const camp = evt.target;
