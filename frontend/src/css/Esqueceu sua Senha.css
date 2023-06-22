@@ -1,15 +1,35 @@
+.container-forgot-password{
+    position: relative;
+}
 .content-border{
     display: flex;
-    width: 50%;
-    height: 70%;
+    width: 60%;
+    height: 80%;
     box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
+    position: relative;
 }
-.content-img{
+.background-desing-top{
     background: var(--second-back-color) 50%;
-    max-height: 28%;
-    max-width: 30%;
-
+    width: 170px;
+    height:130px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    border-bottom-left-radius: 5%;
+    border-top-right-radius: 6%;
+}
+.background-desing-bottom{
+    background: var(--second-back-color) 50%;
+    width: 190px;
+    height:130px;
+    position: absolute;
+    top: 75.5%;
+    right: 74.5%;
+    z-index: 1;
+    border-top-right-radius: 5%;
+    border-bottom-left-radius: 6%;
 }
 .main-text{
     font-family: var(--second-font);
@@ -89,7 +109,7 @@
     .content-border{
         box-shadow: none;
     }
-    .container-logIn{
+    .container-forgot-password{
         display: grid;
     }
     .content-email{
