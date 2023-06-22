@@ -13,7 +13,12 @@
             <div class="content-register">
                 <h1>Registrar-se</h1>
                 <div class="content-input">
-                    <input minlength="4" maxlength="15" type="text" id="username" required >
+                    <input minlength="4"
+                     maxlength="15"
+                     type="text"
+                     id="username"
+                     required 
+                     >
                     <label class="text" for="username">Usuário</label>
                     <p><p>
                 </div>
@@ -23,13 +28,14 @@
                     <p><p>
                 </div>
                 <div class="content-input">
-                    <input type="password" id="password" required >
+                    <input type="password" minlength="4" id="senha" required >
                     <label for="password">Senha</label>
-                    <span class="material-symbols-sharp">
-                        visibility
-                    </span>
+                    <button type="button" id="showPasswordBtn" class="showPass">
+                        <span class="material-symbols-sharp">
+                            visibility_off
+                        </span>
+                    </button>
                     <p></p>
-                    <button type="button" onclick="showPasswordBtn" id="showPasswordBtn">Mostrar senha</button>
                 </div>
                 <div class="content-buttons">
                     <button class="button-register" type="submit">Criar conta</button>   
