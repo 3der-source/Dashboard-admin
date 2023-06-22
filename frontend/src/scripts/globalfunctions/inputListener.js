@@ -5,7 +5,7 @@ function focusIn(evt){
     evt.target.classList.remove('error');
 }
 
-function verifyCamp(evt){
+function verifyCamp(evt, controler){
     const camp = evt.target;
     const id = camp.getAttribute('id');
     const messageError = document.querySelector(`#${id} ~ p`);
@@ -29,13 +29,12 @@ function verifyCamp(evt){
         if(btnShowPass)btnShowPass.classList.add('errorMessage');
         removeError();
     }
-
-
     
     if(camp.validity.tooShort){
         messageError.innerHTML = `${id.toUpperCase()} deve conter no mínimo ${camp.getAttribute('minlength')} caracteres`;        
         if(btnShowPass)btnShowPass.classList.add('errorMessage');
         addError();
+        controler[id] = false;
         return;
     }
 
@@ -45,6 +44,8 @@ function verifyCamp(evt){
             messageError.innerHTML = "" 
         }else{
             addError();
+            controler[id] = false;
+            return;
         }
     }
     
@@ -54,17 +55,22 @@ function verifyCamp(evt){
             messageError.innerHTML = ""
         } else {
             addError();
+            controler[id] = false;
+            return;
         }
     }
     camp.removeEventListener('focusout', {})
+    controler[id] = true;
 }
 
-export default function inputListener(evt){
+export default function inputListener(evt, controler){
     const transformValue = evt.target.value !== "" ? "0" : "10px";
     const fontSizeValue = evt.target.value !== "" ? "10px" : "15px";
 
     evt.target.nextElementSibling.style.top = `${transformValue}`;
     evt.target.nextElementSibling.style.fontSize = fontSizeValue;
 
-    evt.target.addEventListener('focusout', verifyCamp);
+    evt.target.addEventListener('focusout', function(evt){
+        verifyCamp(evt, controler);
+    });
 }
