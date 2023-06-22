@@ -3,18 +3,24 @@ function verifyCamp(evt){
     const camp = evt.target;
     const id = camp.getAttribute('id');
     const messageError = document.querySelector(`#${id} ~ p`);
+    const campLabel = document.querySelector(`#${id} ~ label`);
+
+    const btnShowPass = document.querySelector(`#${id} ~ button > span`) || undefined;
 
     if(camp.validity.tooShort){
         messageError.classList.add('errorMessage')
         messageError.innerHTML = 
         `${id.toUpperCase()} deve conter no mínimo ${camp.getAttribute('minlength')} caracteres`;
         camp.classList.add('error');
-        document.querySelector(`#${id} ~ label`).classList.add('errorMessage');        
+        campLabel.classList.add('errorMessage');
+        
+        if(btnShowPass)btnShowPass.classList.add('errorMessage');
     } 
-    camp.addEventListener('focus', ()=>{
+    camp.addEventListener('focusin', (evt)=>{
+            focusIn(evt)
             messageError.innerHTML = ""
-            document.querySelector(`#${id} ~ label`).classList.remove('errorMessage');
-    
+            campLabel.classList.remove('errorMessage');
+            if(btnShowPass)btnShowPass.classList.remove('errorMessage');
     })
 
 }
@@ -25,17 +31,21 @@ function focusIn(evt){
 }
 
 function inputListener(evt){
-    const transformValue = evt.target.value !== "" ? "-10px" : "0";
+    const transformValue = evt.target.value !== "" ? "0" : "10px";
     const fontSizeValue = evt.target.value !== "" ? "10px" : "15px";
 
-    evt.target.nextElementSibling.style.transform = `translateY(${transformValue})`;
+    evt.target.nextElementSibling.style.top = `${transformValue}`;
     evt.target.nextElementSibling.style.fontSize = fontSizeValue;
+
+    evt.target.addEventListener('focusout', verifyCamp)
 }
 
 function showPassword(){
     const getTypeVerify = passwordCamp.getAttribute('type') === 'password' ? 'text' : 'password';
+    const imgButton = passwordCamp.getAttribute('type') === 'password' ? 'visibility' : 'visibility_off';
+    this.firstElementChild.innerHTML = imgButton; 
     passwordCamp.setAttribute('type', getTypeVerify)
-    showPasswordBtn.classList.toggle('showPasswordBtn')
+    
 }
 
 function registerUser(evt) {
@@ -75,18 +85,14 @@ function registerUser(evt) {
 
 const usernameCamp = document.getElementById('username');
 const emailCamp = document.getElementById('email');
-const passwordCamp = document.getElementById('password');
+const passwordCamp = document.getElementById('senha');
 const showPasswordBtn = document.getElementById('showPasswordBtn');
-
 
 const inputs = Array.from(document.querySelectorAll('input'));
 
 inputs.forEach(input => {
     input.addEventListener('input', inputListener);
 })
-
-usernameCamp.addEventListener('focusout', verifyCamp);
-usernameCamp.addEventListener('focusin', focusIn);
 
 document.querySelector('.button-register').addEventListener('click', registerUser);
 

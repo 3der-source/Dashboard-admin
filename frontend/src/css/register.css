@@ -55,8 +55,6 @@
     outline: none;
 }
 
-
-
 .container-register .content-input > label{
     position: absolute;
     left: 10px;
@@ -153,9 +151,4 @@
         display: contents;
     }
 
-}
-
-#showPasswordBtn{
-    font-size: 18px;
-    color: #000;
 }

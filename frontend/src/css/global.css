@@ -47,6 +47,24 @@
 	20%, 40%, 60%, 80% {transform: translateX(10px);}
 }
 
+.showPass{
+    position: absolute;
+    left: 85%;
+    z-index: 1;
+    
+    display: flex;
+    align-items: center;
+
+    text-align: center;
+
+    height: 40px;
+
+    border: none;
+    background: none;
+
+    cursor: pointer;
+}
+
 .error{
     animation: shake 1s ease;
     border: 1px solid red !important;
@@ -56,4 +74,5 @@
     color: red !important;
     animation: shake 1s ease;
     font-size: 0.8em;
+    top: 0; 
 }
