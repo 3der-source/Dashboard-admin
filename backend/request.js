@@ -9,14 +9,24 @@ request.post('/register/auth', async(req, res) => {
     try{
         const { username, email, password } = req.body;
 
-        // Verificar ser o e-mail já existe
-        const existingEmail = await User.findOne({ email })
-        if(existingEmail){
-            return res.json({ error: 'Email já existe'})
-        }
+        
         const existingUser = await User.findOne({ username })
         if(existingUser){
-            return res.json({ error: 'Username já existente'})
+            return res.json({
+                error: 'Username já existente',
+                email: true,
+                username: false,
+            })
+        }
+
+        const existingEmail = await User.findOne({ email })
+        if(existingEmail){
+            return res.json({
+                error: 'Email já existe',
+                email: false,
+                username: true,
+            })
+            return;
         }
 
         // Criptografar a senha
@@ -24,7 +34,7 @@ request.post('/register/auth', async(req, res) => {
         const hashedPassword = await bcrypt.hash(password, genPassword);
 
         const newUser = new User({
-            username,
+            username: username,
             email: email,
             password: hashedPassword, 
         });
@@ -36,10 +46,6 @@ request.post('/register/auth', async(req, res) => {
         res.json({
             success: true,
             redirectUrl: '/login',
-            username,
-            email,
-            password,
-            
         })
     } catch(error){
         console.log('Error ao registrar usuário', error);
@@ -47,28 +53,65 @@ request.post('/register/auth', async(req, res) => {
     }
 })
 
-request.post('/login/auth', async (res, req) => {
+request.post('/login/auth', async (req, res) => {
     try{
         const { email, password } = req.body;
         
-        const user = await User.findOne({ email: email });
+        const user = await User.findOne({ email });
         if(!user){
-            return res.json({ error: 'Email já existe' })
+            return res.json({ 
+                email: false,
+                senha: true,
+                error: 'Email não existente', 
+            })
         }
     
         const verifyPassword = await bcrypt.compare(password, user.password)
         if(!verifyPassword){
-            return res.json({ error: 'A senha está incorreta'})
+            return res.json({
+                senha: false,
+                email:true,
+                error: 'A senha está incorreta',
+            })
         }
 
-        res.json('Login feito com sucesso!')
+       return res.json({
+        success: true,
+        redirectUrl: '/',
+        
+    })
 
     } catch(error){
-        console.log('Error ao fazer login', error);
-        res.json({ error: 'Login falhou!'})
-}
+        res.json({ error})
+        }
 })
 
+request.post('/redefinir-senha/auth', async(req, res) => {
+    try{    
+        const { email, newPassword } = req.body;
+
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.json({ 
+                error: 'Email não existente',
+                email: false, 
+            });
+        }
+
+        const saltRounds = 10;
+        const forgotPassword = bcrypt.hash(newPassword, saltRounds);
+
+        user.password = forgotPassword;
+        await user.save();
+
+        return res.json({
+            success: true,
+            redirectUrl: '/login',
+        });
+    } catch(error){
+        res.json({ error})
+    }
+})
 
 
 module.exports = request;

@@ -3,12 +3,11 @@ import verifyEmail from "./exports/verifyEmail.js";
 import toggleError from "./exports/toggleError.js";
 
 function verifyCamp(evt, controler){
+    if(!controler.registro && !controler.redefinir)return;
     const camp = evt.target;
     const id = camp.getAttribute('id');
     const messageError = document.querySelector(`#${id} ~ p`);
     const campLabel = document.querySelector(`#${id} ~ label`);
-
-    console.log(evt);
 
     const btnShowPass = document.querySelector(`#${id} ~ button > span`) || undefined;
     

@@ -37,12 +37,20 @@ function registerUser(evt) {
         })
         .then((data) => {
             if (data.success) {
-                    window.location.href = data.redirectUrl
-            } else {
-                const messageError = document.querySelector(`#${inputs[1].getAttribute('id')} ~ p`);
-                messageError.innerHTML = data.error;
-                messageError.classList.add('errorMessage');
-                toggleError(inputs[1], messageError.previousElementSibling, messageError);
+                    window.location.href = data.redirectUrl;
+            } else if(!data.username || !data.email){
+                const keys = Object.keys(data); const values = Object.values(data)
+                for(let i in values){
+                    console.log(values[i])
+                    if(!values[i]){
+                        const input = document.querySelector(`#${keys[i]}`);
+                        const messageError = document.querySelector(`#${keys[i]} ~ p`);
+                        messageError.innerHTML = data.error;
+                        messageError.classList.add('errorMessage');
+                        toggleError(input, input.nextElementSibling, messageError, messageError.previousElementSibling);
+                        return;
+                    }
+                }
             }
         })
         .catch(res=> console.log('There was a problem with your fetch operation: ' + res.message));
@@ -52,6 +60,7 @@ const inputs = Array.from(document.querySelectorAll('input'));
 const showPasswordBtn = document.getElementById('showPasswordBtn');
 
 const controler = {
+    registro: true,
     username: false,
     email: false,
     senha: false,
