@@ -71,7 +71,7 @@ inputs.forEach(input => {
     });
 })
 
-document.querySelector('.style-button-enter').addEventListener('click', function(evt){
+document.querySelector('.style-button-enter-logIn').addEventListener('click', function(evt){
     inputs.map((input) => {
         if(input.validity.valueMissing){
             input.classList.add('error');

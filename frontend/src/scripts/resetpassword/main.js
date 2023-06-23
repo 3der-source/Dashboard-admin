@@ -13,11 +13,18 @@ function resetPassword(evt) {
     const passwordCamp = document.getElementById('senha');
     const confirmPasswordCamp = document.getElementById('confirmar-senha');
 
-    if(passwordCamp.value !== confirmPasswordCamp.value) {
-        const messageError = document.querySelector(`#${inputs[2].getAttribute('id')} ~ p`);
-        messageError.innerHTML = `Esse campo deve ser igual ao anterior`;
-        messageError.classList.add('errorMessage');
-        toggleError(inputs[2], messageError.previousElementSibling, messageError);
+    if(passwordCamp.value != confirmPasswordCamp.value) {
+        const inputss = [passwordCamp, confirmPasswordCamp];
+        inputss.map((input) => {
+                input.classList.add('error');
+                const label = input.nextElementSibling;
+                const messageError = document.querySelector(`#${input.getAttribute('id')} ~ p`);
+                messageError.innerHTML = `Campos incompatíveis!`;
+    
+                const btnShowPass = document.querySelector(`#${input.getAttribute('id')} ~ button > span`) || undefined;
+                
+                toggleError(input, label, messageError, btnShowPass);
+            })
         return;
     }
 
@@ -46,7 +53,6 @@ function resetPassword(evt) {
             if (data.success) {
                     window.location.href = data.redirectUrl
             } else if(!data.email || !data.senha){
-                
                 const keys = Object.keys(data); const values = Object.values(data)
                 for(let i in values){
                     if(!values[i]){

@@ -78,7 +78,6 @@ request.post('/login/auth', async (req, res) => {
        return res.json({
         success: true,
         redirectUrl: '/',
-        
     })
 
     } catch(error){
@@ -98,7 +97,9 @@ request.post('/redefinir-senha/auth', async(req, res) => {
             });
         }
 
-        if(bcrypt.compare(newPassword, user.password)){
+        const verifyPasswords = await bcrypt.compare(newPassword, user.password);
+
+        if(verifyPasswords){
             return res.json({
                 error: `Essa é sua senha atual`,
                 senha: false,
