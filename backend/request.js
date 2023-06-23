@@ -1,5 +1,4 @@
 const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
 const express = require('express');
 const User = require('./database/User');
 const request = express();
@@ -46,6 +45,28 @@ request.post('/register/auth', async(req, res) => {
         console.log('Error ao registrar usuário', error);
         res.json({ error: 'Registro falhou!' });
     }
+})
+
+request.post('/login/auth', async (res, req) => {
+    try{
+        const { email, password } = req.body;
+        
+        const user = await User.findOne({ email: email });
+        if(!user){
+            return res.json({ error: 'Email já existe' })
+        }
+    
+        const verifyPassword = await bcrypt.compare(password, user.password)
+        if(!verifyPassword){
+            return res.json({ error: 'A senha está incorreta'})
+        }
+
+        res.json('Login feito com sucesso!')
+
+    } catch(error){
+        console.log('Error ao fazer login', error);
+        res.json({ error: 'Login falhou!'})
+}
 })
 
 

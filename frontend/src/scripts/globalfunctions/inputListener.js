@@ -8,6 +8,8 @@ function verifyCamp(evt, controler){
     const messageError = document.querySelector(`#${id} ~ p`);
     const campLabel = document.querySelector(`#${id} ~ label`);
 
+    console.log(evt);
+
     const btnShowPass = document.querySelector(`#${id} ~ button > span`) || undefined;
     
     if(camp.validity.tooShort){

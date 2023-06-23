@@ -19,6 +19,3 @@ export default function verifyPassword(password){
     return 'true';
 
 }
-
-const teste = 'senhamaior'
-console.log(verifyPassword(teste))
