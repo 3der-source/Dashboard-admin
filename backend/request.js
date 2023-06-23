@@ -98,11 +98,23 @@ request.post('/redefinir-senha/auth', async(req, res) => {
             });
         }
 
-        const saltRounds = 10;
-        const forgotPassword = bcrypt.hash(newPassword, saltRounds);
+        if(bcrypt.compare(newPassword, user.password)){
+            return res.json({
+                error: `Essa é sua senha atual`,
+                senha: false,
+            })
+        }
 
-        user.password = forgotPassword;
-        await user.save();
+        const saltRounds = 10;
+
+        bcrypt.hash(newPassword, saltRounds, (err, hashedPassword) =>{
+            if(err){
+                return res.json(err);
+            }else{
+                user.password = hashedPassword;
+                return user.save();
+            }
+        })
 
         return res.json({
             success: true,

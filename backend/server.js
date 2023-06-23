@@ -8,7 +8,6 @@ const request = require('./request')
 const cors = require('cors');
 
 const mongoose = require('mongoose')
-const bcrypt = require('bcrypt');
 
 const mainPath = __dirname.split('\\backend')[0];
 
