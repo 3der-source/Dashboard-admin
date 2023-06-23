@@ -6,19 +6,24 @@
     height: 100vh;
     font-size: 1.6rem;
 }
-.content-border{
+.content-buttons-logIn{
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+.content-border-logIn{
     display: flex;
     width: 70%;
     height: 70%;
     box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
 }
-.content-login, .content-img{
+.content-login, .content-img-logIn{
     flex: 1 50%;
     white-space: nowrap;
     box-sizing: border-box;
 }
-.content-img{
+.content-img-logIn{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -32,7 +37,7 @@
     justify-content: center;
     align-items: center;
 }
-.main-text{
+.main-text-logIn{
     font-family: var(--second-font);
     color: var(--main-color);
     margin-bottom: 2px;
@@ -49,7 +54,7 @@
     font-size: 12px;
     color: var(--main-color);
 }
-.content-email{
+.content-email-logIn{
     border: 1px solid var( --border-input-color);
     border-radius: 10px;
     width: 320px;
@@ -58,7 +63,7 @@
     padding-left: 10px;
     outline: none;
 }
-.content-password{
+.content-password-logIn{
     border: 1px solid var( --border-input-color);
     border-radius: 10px;
     width: 320px;
@@ -67,7 +72,7 @@
     padding-left: 10px;
     outline: none;
 }
-.content-check{
+.content-check-logIn{
     display: flex;
     flex-direction: row;
     margin-top: 0.5em;
@@ -83,7 +88,7 @@
     border-radius: 2px;
 }
 
-.style-button-enter{
+.style-button-enter-logIn{
     border: 1px solid var(--color-buton);
     border-radius: 6px;
     background: var(--color-buton);
@@ -96,7 +101,7 @@
     transition: font-size 500ms;
 }
 
-.style-button-google{
+.style-button-google-logIn{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -110,14 +115,14 @@
     transition: font-size 500ms;
 }
 
-.style-button-enter:hover{
+.style-button-enter-logIn:hover{
     font-size: 18px;
 }
-.style-button-google:hover{
+.style-button-google-logIn:hover{
     background-color: var(--color-white);
     font-size: 16px;
 }
-.content-Create{
+.content-Create-logIn{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -150,82 +155,82 @@
     margin-bottom: 26px;
 }
 
-.content-img img{
+.content-img-logIn img{
     width: 30rem;
 }
 
-.content-input{
+.content-input-logIn{
     display: flex;
     flex-direction: column;
     position: relative;
 }
 
-.content-input > input{
+.content-input-logIn > input{
     position: relative;
     z-index: 1;
 }
 
-.content-input > input:focus ~ .main-text,
-.content-input > input:valid ~ .main-text{
+.content-input-logIn > input:focus ~ .main-text-logIn,
+.content-input-logIn > input:valid ~ .main-text-logIn{
     top: 0;
     font-size: 1rem;
 }
-.content-img > img {
+.content-img-logIn > img {
     width: 270px;
 }
 
+@media screen and (max-width: 452px){
+    .content-border-logIn{
+        box-shadow: none;
+    }
+} 
+
+@media screen and (max-width: 768px){
+    .content-img-logIn > img{
+        display: contents;
+    }
+    .content-img-logIn{
+        display: contents;
+    }
+}
+
 @media screen and (max-width: 375px){
-    .content-border{
+    .content-border-logIn{
         box-shadow: none;
     }
     .container-logIn{
         display: grid;
     }
-    .content-email{
+    .content-email-logIn{
         width: 290px;
     }
-    .content-password{
+    .content-password-logIn{
         width: 290px;
     }
-    .style-button-enter{
+    .style-button-enter-logIn{
         margin-bottom: revert;
     }
-    .style-button-enter ,.style-button-google{
+    .style-button-enter-logIn ,.style-button-google-logIn{
         width: 290px;
     }
-    .content-buttons{
-        display: contents;
+    .content-buttons-logIn{
+        display: flex;
         align-items: center;
     }
-    .content-check{
+    .content-check-logIn{
         display: flex;
         gap: 3px;
     }
     .content-forgot-password{
         font-size: 13px;
     }
-    .content-Create{
+    .content-Create-In{
         margin-top: auto;
     }
-    .content-check{
+    .content-check-logIn{
         margin-top: revert;
     }
-    .content-Create{
+    .content-Create-In{
         font-size: 15px;
-    }
-} 
-
-@media screen and (max-width: 452px){
-    .content-border{
-        box-shadow: none;
-    }
-} 
-
-@media screen and (max-width: 768px){
-    .content-img > img{
-        display: contents;
-    }
-    .content-img{
-        display: contents;
     }
 }
