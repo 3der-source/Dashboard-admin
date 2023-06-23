@@ -1,9 +1,6 @@
 import verifyPassword from "./exports/verifyPassword.js";
 import verifyEmail from "./exports/verifyEmail.js";
-
-function focusIn(evt){
-    evt.target.classList.remove('error');
-}
+import toggleError from "./exports/toggleError.js";
 
 function verifyCamp(evt, controler){
     const camp = evt.target;
@@ -12,28 +9,11 @@ function verifyCamp(evt, controler){
     const campLabel = document.querySelector(`#${id} ~ label`);
 
     const btnShowPass = document.querySelector(`#${id} ~ button > span`) || undefined;
-
-    function removeError(){
-        camp.addEventListener('focusin', (evt)=>{
-            focusIn(evt)
-            messageError.innerHTML = ""
-            campLabel.classList.remove('errorMessage');
-            if(btnShowPass)btnShowPass.classList.remove('errorMessage');
-            camp.removeEventListener('focusin', {});
-        })}
-
-    function addError(){
-        camp.classList.add('error');
-        campLabel.classList.add('errorMessage');
-        messageError.classList.add('errorMessage')
-        if(btnShowPass)btnShowPass.classList.add('errorMessage');
-        removeError();
-    }
     
     if(camp.validity.tooShort){
         messageError.innerHTML = `${id.toUpperCase()} deve conter no mínimo ${camp.getAttribute('minlength')} caracteres`;        
         if(btnShowPass)btnShowPass.classList.add('errorMessage');
-        addError();
+        toggleError(camp, campLabel, messageError, btnShowPass);
         controler[id] = false;
         return;
     }
@@ -43,7 +23,7 @@ function verifyCamp(evt, controler){
         if(messageError.innerHTML == 'true'){
             messageError.innerHTML = "" 
         }else{
-            addError();
+            toggleError(camp, campLabel, messageError, btnShowPass);
             controler[id] = false;
             return;
         }
@@ -54,7 +34,7 @@ function verifyCamp(evt, controler){
         if (messageError.innerHTML == 'true') {
             messageError.innerHTML = ""
         } else {
-            addError();
+            toggleError(camp, campLabel, messageError, btnShowPass);
             controler[id] = false;
             return;
         }
