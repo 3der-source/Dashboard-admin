@@ -36,11 +36,19 @@ function loginUser(evt) {
         .then((data) => {
             if (data.success) {
                     window.location.href = data.redirectUrl
-            } else {
-                const messageError = document.querySelector(`#${inputs[1].getAttribute('id')} ~ p`);
-                messageError.innerHTML = data.error;
-                messageError.classList.add('errorMessage');
-                toggleError(inputs[1], messageError.previousElementSibling, messageError);
+            } else if(!data.email || !data.password){
+                const keys = Object.keys(data); const values = Object.values(data)
+                for(let i in values){
+                    if(!values[i]){
+                        const input = document.querySelector(`#${keys[i]}`);
+                        const messageError = document.querySelector(`#${keys[i]} ~ p`);
+                        const btnShowPass = document.querySelector(`#${keys[i]} ~ button`);
+                        messageError.innerHTML = data.error;
+                        messageError.classList.add('errorMessage');
+                        toggleError(input, input.nextElementSibling, messageError, btnShowPass);
+                        return;
+                    }
+                }
             }
         })
         .catch(res=> console.log('There was a problem with your fetch operation: ' + res.message));
@@ -77,6 +85,8 @@ document.querySelector('.style-button-enter').addEventListener('click', function
             return;
         }
     })
+    controler.email = true;
+    controler.senha = true;
 
     loginUser(evt);
 });
