@@ -11,13 +11,14 @@ function resetPassword(evt) {
 
     const emailCamp = document.getElementById('email');
     const passwordCamp = document.getElementById('senha');
-    const confirmPasswordCamp = document.getElementById('confirmSenha');
+    const confirmPasswordCamp = document.getElementById('confirmar-senha');
 
-    if(passwordCamp.value !== confirmPasswordCamp) {
+    if(passwordCamp.value !== confirmPasswordCamp.value) {
         const messageError = document.querySelector(`#${inputs[2].getAttribute('id')} ~ p`);
         messageError.innerHTML = `Esse campo deve ser igual ao anterior`;
         messageError.classList.add('errorMessage');
         toggleError(inputs[2], messageError.previousElementSibling, messageError);
+        return;
     }
 
     const dados = {
@@ -42,9 +43,11 @@ function resetPassword(evt) {
             }
         })
         .then((data) => {
+            console.log(data)
             if (data.success) {
                     window.location.href = data.redirectUrl
             } else if(!data.email){
+                
                 const keys = Object.keys(data); const values = Object.values(data)
                 for(let i in values){
                     if(!values[i]){
@@ -69,6 +72,7 @@ const showPasswordBtn = Array.from(document.querySelectorAll('.showPass'));
 showPasswordBtn.map((btn) => {btn.addEventListener('click', showPassword)})
 
 const controler = {
+    redefinir: true,
     email: false,
     senha: false,
 };
