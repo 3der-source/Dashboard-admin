@@ -42,7 +42,7 @@ function registerUser(evt) {
                 const messageError = document.querySelector(`#${inputs[1].getAttribute('id')} ~ p`);
                 messageError.innerHTML = data.error;
                 messageError.classList.add('errorMessage');
-                toggleError(inputs[1], messageError.previousElementSibling, messageError)
+                toggleError(inputs[1], messageError.previousElementSibling, messageError);
             }
         })
         .catch(res=> console.log('There was a problem with your fetch operation: ' + res.message));
@@ -72,6 +72,7 @@ document.querySelector('.button-register').addEventListener('click', function(ev
             input.classList.add('error');
             const label = input.nextElementSibling;
             const messageError = document.querySelector(`#${input.getAttribute('id')} ~ p`);
+            messageError.innerHTML = `${input.getAttribute('id').toUpperCase()}: Por favor preencha esse campo!`;
 
             const btnShowPass = document.querySelector(`#${input.getAttribute('id')} ~ button > span`) || undefined;
             

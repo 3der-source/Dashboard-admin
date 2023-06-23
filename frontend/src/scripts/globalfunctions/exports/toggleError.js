@@ -2,11 +2,11 @@ function focusIn(evt){
     evt.target.classList.remove('error');
 }
 
-function removeError(){
+function removeError(camp, label, message, btnShowPass = undefined){
     camp.addEventListener('focusin', (evt)=>{
         focusIn(evt)
-        messageError.innerHTML = ""
-        campLabel.classList.remove('errorMessage');
+        message.innerHTML = ""
+        label.classList.remove('errorMessage');
         if(btnShowPass)btnShowPass.classList.remove('errorMessage');
         camp.removeEventListener('focusin', {});
     })}
@@ -16,5 +16,5 @@ export default function toggleError(camp, label, message, btnShowPass = undefine
     label.classList.add('errorMessage');
     message.classList.add('errorMessage')
     if(btnShowPass)btnShowPass.classList.add('errorMessage');
-    removeError();
+    removeError(camp, label, message, btnShowPass);
 }
