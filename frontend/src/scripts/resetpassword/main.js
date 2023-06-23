@@ -43,10 +43,9 @@ function resetPassword(evt) {
             }
         })
         .then((data) => {
-            console.log(data)
             if (data.success) {
                     window.location.href = data.redirectUrl
-            } else if(!data.email){
+            } else if(!data.email || !data.senha){
                 
                 const keys = Object.keys(data); const values = Object.values(data)
                 for(let i in values){
