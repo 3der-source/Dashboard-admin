@@ -207,3 +207,10 @@
     height: 52%;
     }
 }
+
+@media screen and (min-width: 1440px){
+    .content-border{
+    width: 55%;
+    height: 41%;
+}
+}
