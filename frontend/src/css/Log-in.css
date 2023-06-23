@@ -5,6 +5,7 @@
     flex-direction: row;
     height: 100vh;
     font-size: 1.6rem;
+    gap: 1.5rem
 }
 .content-buttons-logIn{
     display: flex;
@@ -36,11 +37,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 1.5rem;
 }
 .main-text-logIn{
     font-family: var(--second-font);
     color: var(--main-color);
-    margin-bottom: 2px;
+    margin-bottom: 0px;
 
     position: absolute;
     left: 1rem;
@@ -59,7 +61,7 @@
     border-radius: 10px;
     width: 320px;
     height: 40px;
-    margin-bottom: 2em;
+    margin-bottom: 0;
     padding-left: 10px;
     outline: none;
 }
@@ -68,7 +70,7 @@
     border-radius: 10px;
     width: 320px;
     height: 40px;
-    margin-bottom: 1.4rem;
+    margin-bottom: 0;
     padding-left: 10px;
     outline: none;
 }
@@ -76,7 +78,7 @@
     display: flex;
     flex-direction: row;
     margin-top: 0.5em;
-    margin-bottom: 1.4rem;
+    margin-bottom: 0px;
     align-items: center;
 
 }
