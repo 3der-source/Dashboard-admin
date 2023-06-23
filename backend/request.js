@@ -86,11 +86,11 @@ request.post('/login/auth', async (req, res) => {
         }
 })
 
-request.post('/redifinir-senha/auth', async(req, res) => {
+request.post('/redefinir-senha/auth', async(req, res) => {
     try{    
-        const { email, newPassword } = red.body;
+        const { email, newPassword } = req.body;
 
-        const user = await User.findOne({ email: email });
+        const user = await User.findOne({ email });
         if (!user) {
             return res.json({ 
                 error: 'Email não existente',
@@ -100,7 +100,6 @@ request.post('/redifinir-senha/auth', async(req, res) => {
 
         const saltRounds = 10;
         const forgotPassword = bcrypt.hash(newPassword, saltRounds);
-        
 
         user.password = forgotPassword;
         await user.save();
