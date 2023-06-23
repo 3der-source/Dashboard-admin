@@ -36,10 +36,6 @@ request.post('/register/auth', async(req, res) => {
         res.json({
             success: true,
             redirectUrl: '/login',
-            username,
-            email,
-            password,
-            
         })
     } catch(error){
         console.log('Error ao registrar usuário', error);
@@ -61,7 +57,11 @@ request.post('/login/auth', async (res, req) => {
             return res.json({ error: 'A senha está incorreta'})
         }
 
-        res.json('Login feito com sucesso!')
+       return res.json({
+        msg: 'Login feito com sucesso!',
+        redirectUrl: '/'
+        
+    })
 
     } catch(error){
         console.log('Error ao fazer login', error);
@@ -69,6 +69,28 @@ request.post('/login/auth', async (res, req) => {
 }
 })
 
+request.post('/redifinir-senha/auth', async(req, res) => {
+    try{    
+        const { email, newPassword } = red.body;
+
+        const user = await User.findOne({ email: email });
+        if (!user) {
+            return res.json({ error: 'Email já existe' });
+        }
+
+        const saltRounds = 10;
+        const forgotPassword = bcrypt.hash(newPassword, saltRounds);
+        
+
+        user.password = forgotPassword;
+        await user.save();
+
+        return res.json({msg: 'Senha redifinida!'});
+    } catch(error){
+        console.log('Error ao redifinir a senha!', error);
+        res.json({ error: 'Redifinir a senha falhou!'})
+    }
+})
 
 
 module.exports = request;
