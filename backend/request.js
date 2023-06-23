@@ -9,14 +9,24 @@ request.post('/register/auth', async(req, res) => {
     try{
         const { username, email, password } = req.body;
 
-        // Verificar ser o e-mail já existe
-        const existingEmail = await User.findOne({ email })
-        if(existingEmail){
-            return res.json({ error: 'Email já existe'})
-        }
+        
         const existingUser = await User.findOne({ username })
         if(existingUser){
-            return res.json({ error: 'Username já existente'})
+            return res.json({
+                error: 'Username já existente',
+                email: true,
+                username: false,
+            })
+        }
+
+        const existingEmail = await User.findOne({ email })
+        if(existingEmail){
+            return res.json({
+                error: 'Email já existe',
+                email: false,
+                username: true,
+            })
+            return;
         }
 
         // Criptografar a senha
@@ -24,7 +34,7 @@ request.post('/register/auth', async(req, res) => {
         const hashedPassword = await bcrypt.hash(password, genPassword);
 
         const newUser = new User({
-            username,
+            username: username,
             email: email,
             password: hashedPassword, 
         });
@@ -43,30 +53,37 @@ request.post('/register/auth', async(req, res) => {
     }
 })
 
-request.post('/login/auth', async (res, req) => {
+request.post('/login/auth', async (req, res) => {
     try{
         const { email, password } = req.body;
         
-        const user = await User.findOne({ email: email });
+        const user = await User.findOne({ email });
         if(!user){
-            return res.json({ error: 'Email já existe' })
+            return res.json({ 
+                email: false,
+                senha: true,
+                error: 'Email não existente', 
+            })
         }
     
         const verifyPassword = await bcrypt.compare(password, user.password)
         if(!verifyPassword){
-            return res.json({ error: 'A senha está incorreta'})
+            return res.json({
+                senha: false,
+                email:true,
+                error: 'A senha está incorreta',
+            })
         }
 
        return res.json({
-        msg: 'Login feito com sucesso!',
-        redirectUrl: '/'
+        success: true,
+        redirectUrl: '/',
         
     })
 
     } catch(error){
-        console.log('Error ao fazer login', error);
-        res.json({ error: 'Login falhou!'})
-}
+        res.json({ error})
+        }
 })
 
 request.post('/redifinir-senha/auth', async(req, res) => {
@@ -75,7 +92,10 @@ request.post('/redifinir-senha/auth', async(req, res) => {
 
         const user = await User.findOne({ email: email });
         if (!user) {
-            return res.json({ error: 'Email já existe' });
+            return res.json({ 
+                error: 'Email não existente',
+                email: false, 
+            });
         }
 
         const saltRounds = 10;
@@ -85,10 +105,12 @@ request.post('/redifinir-senha/auth', async(req, res) => {
         user.password = forgotPassword;
         await user.save();
 
-        return res.json({msg: 'Senha redifinida!'});
+        return res.json({
+            success: true,
+            redirectUrl: '/login',
+        });
     } catch(error){
-        console.log('Error ao redifinir a senha!', error);
-        res.json({ error: 'Redifinir a senha falhou!'})
+        res.json({ error})
     }
 })
 
