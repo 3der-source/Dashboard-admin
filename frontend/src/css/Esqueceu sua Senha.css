@@ -107,38 +107,7 @@
 
 
 
-@media screen and (max-width: 375px){
-    .background-desing-top{
-        display: none;
-    }
-    .background-desing-bottom{
-        display: none;
-    }
-    .main-title {
-        font-size: 1.9em;
-    }
-}
-
-@media screen and (max-width: 452px){
-    .content-border{
-        box-shadow: none;
-    }
-    .background-desing-top{
-        display: none;
-    }
-    .background-desing-bottom{
-        display: none;
-    }
-    .main-title {
-        font-size: 1.9em;
-    }
-    .container-logIn{
-        display: grid;
-    }
-} 
-
 @media screen and (max-width: 320px){
-
     .content-email{
         width: 290px;
     }
@@ -168,9 +137,39 @@
         display: none;
     }
     .main-title {
-        font-size: 1.6em;
+        font-size: 1.6em !important;
     }
-} 
+}
+
+@media screen and (max-width: 375px){
+    .background-desing-top{
+        display: none;
+    }
+    .background-desing-bottom{
+        display: none;
+    }
+    .main-title {
+        font-size: 1.9em;
+    }
+}
+
+@media screen and (max-width: 580px){
+    .content-border{
+        box-shadow: none;
+    }
+    .background-desing-top{
+        display: none;
+    }
+    .background-desing-bottom{
+        display: none;
+    }
+    .main-title {
+        font-size: 1.9em;
+    }
+    .container-logIn{
+        display: grid;
+    }
+}  
 
 @media screen and (max-width: 768px){
     .content-img > img{
@@ -185,22 +184,6 @@
     .background-desing-top{
         display: none;
     }
-    .content-border{
-        width: 56%;
-        height: 56%;
-    }
+    
 }
 
-@media screen and (max-width: 1024px){
-    .content-border{
-    width: 60%;
-    height: 52%;
-    }
-}
-
-@media screen and (min-width: 1440px){
-    .content-border{
-    width: 55%;
-    height: 41%;
-}
-}

@@ -181,21 +181,6 @@
     width: 270px;
 }
 
-@media screen and (max-width: 452px){
-    .content-border-logIn{
-        box-shadow: none;
-    }
-} 
-
-@media screen and (max-width: 768px){
-    .content-img-logIn > img{
-        display: contents;
-    }
-    .content-img-logIn{
-        display: contents;
-    }
-}
-
 @media screen and (max-width: 375px){
     .content-border-logIn{
         box-shadow: none;
@@ -234,5 +219,20 @@
     }
     .content-Create-In{
         font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 452px){
+    .content-border-logIn{
+        box-shadow: none;
+    }
+} 
+
+@media screen and (max-width: 768px){
+    .content-img-logIn > img{
+        display: contents;
+    }
+    .content-img-logIn{
+        display: contents;
     }
 }
