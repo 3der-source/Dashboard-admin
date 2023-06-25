@@ -5,7 +5,6 @@ export default function verifyPassword(password){
     const verifyPasswordNumber = new RegExp(/[0-9]/);
     const verifySpecialCharacters = new RegExp(/[\!\@\#\$\.\,\;\:\&\*\%\_\+]/);
 
-    
     if(!verifyTolowerCase.test(password) || !verifyToUperCase.test(password)){
         return 'A senha tem que ter letras maiúsculas e minúsculas!'
     } 
@@ -16,7 +15,6 @@ export default function verifyPassword(password){
         return 'A senha precisar ter uma caracter especial!'
     }
     
-
     return 'true';
 
 }
