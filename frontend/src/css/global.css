@@ -2,6 +2,7 @@
 @import url('/css/Log-in.css');
 @import url('/css/register.css');
 @import url('/css/Esqueceu sua Senha.css');
+@import url('/css/home.css');
 
 * {
     margin: 0;
